@@ -40,7 +40,11 @@ extension ExampleVC: MviView {
     typealias ACTION = ExampleAction
     
     func attach(viewModel: Observable<VM>, actions: Observable<ExampleAction>) {
-        _ = disposables.insert(actions.subscribe(onNext: handle))
+        _ = disposables.insert(
+            actions.subscribe(onNext: { [weak self] action in
+                self?.handle(action: action)
+            })
+        )
         _ = disposables.insert(render(viewModel))
     }
     
