@@ -50,6 +50,18 @@ extension ExampleVC: MviView {
 
 }
 
+// MARK: - Intents
+extension ExampleViewController {
+    fileprivate func setupIntents() {
+       // create intent disposables
+        
+        _ = disposables.insert(
+            Observable.merge([])
+                .subscribe(intents)
+        )
+    }
+}
+
 // MARKL - Render
 extension ExampleViewController {  
     private func render(_ viewModel: Observable<VM>) -> CompositeDisposable {
