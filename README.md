@@ -85,8 +85,8 @@ extension ExampleViewController {
 ```swift
 class ExampleModel {
     var disposables: CompositeDisposable = CompositeDisposable()
-    var viewModel: BehaviorSubject<PhotosViewModel> = BehaviorSubject.init(value: PhotosViewModel())
-    var actions: PublishSubject<PhotosAction> = PublishSubject()
+    var viewModel: BehaviorSubject<ExampleViewModel> = BehaviorSubject.init(value: ExampleViewModel())
+    var actions: PublishSubject<ExampleAction> = PublishSubject()
     var events: PublishSubject<Event> = PublishSubject()
     
     required init() { // Inject Singletons, etc
@@ -95,12 +95,12 @@ class ExampleModel {
 }
 
 extension ExampleModel: Model {
-    typealias VM = PhotosViewModel
-    typealias INTENT = PhotosIntent
-    typealias ACTION = PhotosAction
+    typealias VM = ExampleViewModel
+    typealias INTENT = ExampleIntent
+    typealias ACTION = ExampleAction
     
     func attach(intents: Observable<INTENT>) {
-        let initModel = PhotosViewModel()
+        let initModel = ExampleViewModel()
         makeViewModel(events: eventsFrom(intents: intents),
                       initialViewModel: initModel,
                       reducer: reduce)
@@ -138,11 +138,11 @@ struct ExampleViewModel: Equatable {
     // all state changes
 }
 
-enum PhotosIntent: Intent {
-    case ClickedButton
+enum ExampleIntent: Intent {
+    case ClickedButtonExample
 }
 
-enum PhotosAction: Action {
+enum ExampleAction: Action {
     
 }
 ```
